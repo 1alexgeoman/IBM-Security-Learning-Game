@@ -1,0 +1,282 @@
+[gd_scene load_steps=12 format=3 uid="uid://egcje2uqy53n"]
+
+[ext_resource type="FontFile" uid="uid://bevs4mlbet5wb" path="res://Resources/Fonts/alagard.ttf" id="1_8nwee"]
+[ext_resource type="Texture2D" uid="uid://b667r8ddc1ous" path="res://Assets/UI/Art/BackGround.png" id="1_el0n1"]
+[ext_resource type="Script" path="res://Scripts/UI/shop_ui.gd" id="1_jecfo"]
+[ext_resource type="PackedScene" uid="uid://dw8kq5hce4irk" path="res://Scenes/UIScenes/ItemCard.tscn" id="2_gw20j"]
+[ext_resource type="Texture2D" uid="uid://cp6d5i5vhby4f" path="res://Assets/UI/Buttons/button_rectangle_depth_gloss.png" id="3_mac16"]
+[ext_resource type="Texture2D" uid="uid://cel8856ingvn6" path="res://Assets/UI/Buttons/button_rectangle_depth_flat.png" id="4_x5skj"]
+[ext_resource type="LabelSettings" uid="uid://8oatwmkmanwe" path="res://Resources/label_settings/new_label_settings.tres" id="5_x4muw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_0jfs5"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_anms8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x2i2t"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bnpdh"]
+
+[node name="ShopUI" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_jecfo")
+
+[node name="BackGround" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -34.0
+offset_top = -6.0
+offset_right = 26.0
+offset_bottom = 34.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_el0n1")
+
+[node name="MainVBox" type="VBoxContainer" parent="BackGround"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 60.0
+offset_top = 57.0
+offset_right = -66.0
+offset_bottom = -48.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 20
+
+[node name="HBoxContainer" type="HBoxContainer" parent="BackGround/MainVBox"]
+layout_mode = 2
+
+[node name="BackButton" type="TextureButton" parent="BackGround/MainVBox/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+texture_normal = ExtResource("3_mac16")
+texture_pressed = ExtResource("4_x5skj")
+
+[node name="Label" type="Label" parent="BackGround/MainVBox/HBoxContainer/BackButton"]
+layout_mode = 0
+offset_right = 190.0
+offset_bottom = 63.0
+text = "BACK"
+label_settings = ExtResource("5_x4muw")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BalanceLabel" type="Label" parent="BackGround/MainVBox/HBoxContainer"]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+theme_override_fonts/font = ExtResource("1_8nwee")
+theme_override_font_sizes/font_size = 50
+text = "Balance:"
+
+[node name="CategoryTabs" type="HBoxContainer" parent="BackGround/MainVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="DefensesButton" type="Button" parent="BackGround/MainVBox/CategoryTabs"]
+custom_minimum_size = Vector2(100, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_8nwee")
+theme_override_font_sizes/font_size = 50
+text = "Defenses
+"
+
+[node name="UpgradesButton" type="Button" parent="BackGround/MainVBox/CategoryTabs"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_8nwee")
+theme_override_font_sizes/font_size = 50
+text = "Upgrades"
+
+[node name="PowerUpsButton" type="Button" parent="BackGround/MainVBox/CategoryTabs"]
+custom_minimum_size = Vector2(50, 100)
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_fonts/font = ExtResource("1_8nwee")
+theme_override_font_sizes/font_size = 50
+text = "Power Ups"
+
+[node name="CategoryContent" type="Control" parent="BackGround/MainVBox"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="DefensesScroll" type="ScrollContainer" parent="BackGround/MainVBox/CategoryContent"]
+layout_mode = 1
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = -7.0
+offset_right = 601.0
+offset_bottom = 7.0
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="DefensesGrid" type="GridContainer" parent="BackGround/MainVBox/CategoryContent/DefensesScroll"]
+custom_minimum_size = Vector2(580, 825)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="ItemCard" parent="BackGround/MainVBox/CategoryContent/DefensesScroll/DefensesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_0jfs5")
+
+[node name="ItemCard2" parent="BackGround/MainVBox/CategoryContent/DefensesScroll/DefensesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_anms8")
+
+[node name="ItemCard3" parent="BackGround/MainVBox/CategoryContent/DefensesScroll/DefensesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_x2i2t")
+
+[node name="ItemCard4" parent="BackGround/MainVBox/CategoryContent/DefensesScroll/DefensesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bnpdh")
+
+[node name="ItemCard5" parent="BackGround/MainVBox/CategoryContent/DefensesScroll/DefensesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard6" parent="BackGround/MainVBox/CategoryContent/DefensesScroll/DefensesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard7" parent="BackGround/MainVBox/CategoryContent/DefensesScroll/DefensesGrid" instance=ExtResource("2_gw20j")]
+visible = false
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard8" parent="BackGround/MainVBox/CategoryContent/DefensesScroll/DefensesGrid" instance=ExtResource("2_gw20j")]
+visible = false
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="UpgradesScroll" type="ScrollContainer" parent="BackGround/MainVBox/CategoryContent"]
+visible = false
+layout_mode = 1
+anchors_preset = 13
+anchor_left = 0.5
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -292.0
+offset_right = 288.0
+grow_horizontal = 2
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="UpgradesGrid" type="GridContainer" parent="BackGround/MainVBox/CategoryContent/UpgradesScroll"]
+custom_minimum_size = Vector2(580, 825)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="ItemCard" parent="BackGround/MainVBox/CategoryContent/UpgradesScroll/UpgradesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard2" parent="BackGround/MainVBox/CategoryContent/UpgradesScroll/UpgradesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard3" parent="BackGround/MainVBox/CategoryContent/UpgradesScroll/UpgradesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard4" parent="BackGround/MainVBox/CategoryContent/UpgradesScroll/UpgradesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard5" parent="BackGround/MainVBox/CategoryContent/UpgradesScroll/UpgradesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard6" parent="BackGround/MainVBox/CategoryContent/UpgradesScroll/UpgradesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard7" parent="BackGround/MainVBox/CategoryContent/UpgradesScroll/UpgradesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard8" parent="BackGround/MainVBox/CategoryContent/UpgradesScroll/UpgradesGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="PowerUpsScroll" type="ScrollContainer" parent="BackGround/MainVBox/CategoryContent"]
+layout_mode = 1
+anchors_preset = 11
+anchor_left = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -589.0
+offset_right = -9.0
+grow_horizontal = 0
+grow_vertical = 2
+horizontal_scroll_mode = 0
+vertical_scroll_mode = 0
+
+[node name="PowerUpsGrid" type="GridContainer" parent="BackGround/MainVBox/CategoryContent/PowerUpsScroll"]
+custom_minimum_size = Vector2(580, 825)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/h_separation = 20
+theme_override_constants/v_separation = 0
+columns = 2
+
+[node name="ItemCard" parent="BackGround/MainVBox/CategoryContent/PowerUpsScroll/PowerUpsGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard2" parent="BackGround/MainVBox/CategoryContent/PowerUpsScroll/PowerUpsGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard3" parent="BackGround/MainVBox/CategoryContent/PowerUpsScroll/PowerUpsGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard4" parent="BackGround/MainVBox/CategoryContent/PowerUpsScroll/PowerUpsGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard5" parent="BackGround/MainVBox/CategoryContent/PowerUpsScroll/PowerUpsGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard6" parent="BackGround/MainVBox/CategoryContent/PowerUpsScroll/PowerUpsGrid" instance=ExtResource("2_gw20j")]
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard7" parent="BackGround/MainVBox/CategoryContent/PowerUpsScroll/PowerUpsGrid" instance=ExtResource("2_gw20j")]
+visible = false
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2
+
+[node name="ItemCard8" parent="BackGround/MainVBox/CategoryContent/PowerUpsScroll/PowerUpsGrid" instance=ExtResource("2_gw20j")]
+visible = false
+custom_minimum_size = Vector2(230, 230)
+layout_mode = 2

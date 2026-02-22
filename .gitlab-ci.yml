@@ -1,0 +1,103 @@
+stages:
+  - sanity
+  - import
+  - build
+  - deploy
+
+workflow:
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+    - if: $CI_PIPELINE_SOURCE == "push"
+    - if: $CI_PIPELINE_SOURCE == "web" # for manual creation of pipelines via create new
+
+sanity-check:
+  stage: sanity
+  script:
+    - set -x # used to give verbose output of check
+    - RED="\e[31m"
+    - RST="\e[0m"
+    - BRANCH=${CI_COMMIT_REF_NAME}
+    - DEFAULT=${CI_DEFAULT_BRANCH}
+    - if [ "${BRANCH}" != "${DEFAULT}" ]; then
+        git fetch origin ${DEFAULT}:${DEFAULT};
+        if ! git diff --quiet HEAD ${DEFAULT} .gitlab-ci.yml; then
+            echo -e "${RED}Found outdated .gitlab-ci.yml file in upload${RST}. Please merge ${DEFAULT} into ${BRANCH}";
+            git diff HEAD ${DEFAULT} .gitlab-ci.yml;
+            exit 1;
+        fi;
+      fi;
+    - set +x # disable the verbosity
+  rules:
+    - when: always
+
+# this step imports any information needed for the building e.g. the ctex files that cannot be used in the build until they have been imported
+import-files:
+  image:
+    name: repo.docker.jamestbest.co.uk/godot:latest
+
+  stage: import
+  script:
+    - cd /builds/comp2002/2024-2025/team33_project/securitycrisis
+    - mkdir -p .godot
+    - godot --headless --path . --import
+  artifacts:
+    when: always
+    expire_in: 30 days
+    paths:
+      - /builds/comp2002/2024-2025/team33_project/securitycrisis/.godot/
+  rules:
+    - changes:
+      - securitycrisis/**/*
+      - .gitlab-ci.yml
+
+
+build-job:
+  image:
+    name: repo.docker.jamestbest.co.uk/godot:latest
+
+  stage: build
+  script:
+    - cd /builds/comp2002/2024-2025/team33_project/securitycrisis
+    - mkdir -p ./build
+    # based on the export templates in the Dockerfile
+    - godot --path . --headless --export-release Web build/index.html
+    - jq -n
+        --arg img "${CI_JOB_IMAGE}"
+        --arg hst "${CI_SERVER_NAME}"
+        --arg prj "${CI_PROJECT_TITLE}"
+        --arg url "${CI_PROJECT_URL}"
+        --arg comauth "${CI_COMMIT_AUTHOR}"
+        --arg comhash "${CI_COMMIT_SHA}"
+        --arg commess "${CI_COMMIT_MESSAGE}"
+        --arg create "${CI_PIPELINE_CREATED_AT}"
+        --arg start "${CI_JOB_STARTED_AT}"
+        '{image:$img, host:$hst, project:$prj, project_url:$url, commit_author:$comauth, commit_hash:$comhash, commit_message:$commess, create_time:$create, start_time:$start}'
+        > ./build/.meta
+  artifacts:
+    when: on_success
+    expire_in: 30 days
+    paths:
+      - /builds/comp2002/2024-2025/team33_project/securitycrisis/build/
+  rules:
+    - changes:
+      # any changes to any file in the security crisis folder, including nested
+      - securitycrisis/**/*
+      - .gitlab-ci.yml
+  needs:
+    - sanity-check
+    - import-files
+
+deploy-job:
+  stage: deploy
+  script:
+    - SANITIZED_REF=`echo -n ${CI_COMMIT_REF_NAME} | tr -c '[:alnum:]' '_'`
+    - BRANCH_DIR=/var/www/ibm/${SANITIZED_REF}
+    - rm -rf $BRANCH_DIR
+    - cp -r /builds/comp2002/2024-2025/team33_project/securitycrisis/build $BRANCH_DIR
+  needs:
+    - build-job
+  rules:
+    - changes:
+      # any changes to any file in the security crisis folder, including nested
+      - securitycrisis/**/*
+      - .gitlab-ci.yml

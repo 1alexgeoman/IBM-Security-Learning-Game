@@ -1,0 +1,20 @@
+[gd_scene load_steps=4 format=3 uid="uid://b0nxjstwlkckr"]
+
+[ext_resource type="PackedScene" uid="uid://cd7wceoaptjrj" path="res://Scenes/Characters/npc.tscn" id="1_h70yn"]
+[ext_resource type="Texture2D" uid="uid://b1lkxbvpac2u8" path="res://Assets/NPCs/Nina-nb.png" id="2_ghc12"]
+[ext_resource type="Script" path="res://Scripts/Characters/nina_npc.gd" id="2_po3af"]
+
+[node name="Npc" instance=ExtResource("1_h70yn")]
+script = ExtResource("2_po3af")
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2(0, 0)
+texture = ExtResource("2_ghc12")
+hframes = 1
+frame = 0
+
+[node name="Marker2D" parent="." index="3"]
+position = Vector2(12, -53)
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(-1, 0)

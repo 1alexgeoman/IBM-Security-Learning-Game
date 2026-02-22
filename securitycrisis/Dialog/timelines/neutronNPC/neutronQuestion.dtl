@@ -1,0 +1,21 @@
+[history action="clear"]
+Neutron: Good work out there. Still in shock the Captain was an insider..
+Neutron: Well can't do much about it now. He will be serving jail time and be interrogated in order to find the other suspects.
+Neutron: While he's gone I will now take over in writing the action report.
+Neutron: Just like you've done before, it will be about the SQL injection threat. let's start.
+do GameManager.load_all_questions()
+[wait time="0.5"]
+label questions
+do GameManager.next_question()
+[wait time="0.5"]
+if {question} == "default":
+	jump end
+if {last_question} == true:
+	Neutron: Last question.
+Neutron: {question}
+[text_input text="Please enter your response:" var="response"]
+do GameManager.save_responses()
+jump questions
+label end
+Neutron: Good Job
+[wait time="0.1"]

@@ -1,0 +1,80 @@
+[history action="clear"]
+Nina: Chief, I’m seeing weird database activity. Files are being accessed — but no one's logged in.
+
+Player: Pull up the logs.
+
+(Nina displays the query logs on the central screen)
+
+Player: Look at this — the input fields are carrying entire SQL commands. Someone’s not just searching data — they’re rewriting the queries. Classic case of an\:
+
+- SQL Injection
+
+- Brute Force Attack
+
+- Phishing Scam
+
+#[Correct Answer\: SQL Injection]
+
+Neutron: SQL Injection — isn’t that when attackers insert malicious code into a database through input fields?
+
+Player: Exactly. The system treats the attack code like normal input — and runs it. That’s how they bypass security checks and steal or manipulate data.
+
+Nina: But what could prevent this? How do we make sure input isn’t interpreted as dangerous code?
+
+Player: The safest way is to use\:
+
+- Parameterized Queries
+
+- Basic Encryption
+
+- Disabling User Login
+
+#[Correct Answer\: Parameterized Queries]
+
+Nina: Makes sense. If we used placeholders and bind real data later, the input can’t break the query.
+
+Player: Right. That separates code from data — so even if someone tries an injection, it gets treated as plain text, not executable commands.
+
+Neutron: What kind of input would even trigger an attack like this?
+
+Player: Anything like this should raise alarm:
+
+- 1' OR '1'='1' --
+
+- Hello World!
+
+# #define MAX_VALUE
+
+#[Correct Answer\: 1' OR '1'='1' --]
+
+Nina: But why didn’t the firewall catch this?
+
+Player: Because the attack came from inside. The logs show the commands were sent from... the Captain’s terminal.
+
+(Everyone turns to the Captain)
+
+Captain: ...Sharp as ever. I didn’t expect you to catch on so quickly.
+
+Nina: You? You fed them access?
+
+Captain: The database was vulnerable. I simply sent a few crafted queries. Most apps don’t sanitize inputs, and without parameterized statements, the system just does as it’s told.
+
+Neutron: So what’s next, Chief? How do we undo this?
+
+Player: First, patch the code and apply mitigation techniques like input validation, parameterized queries, and secure error handling. Then deploy the\:
+
+- SQL Enervator
+
+- Trojan Buster
+
+- Spam Filter
+
+#[Correct Answer\: Defence Reboot Tool]
+
+Player: SQL Enervator will clear injected code, reset the database to safe defaults, and lock down access points. After that... we deal with our insider.
+
+(Guards move in to detain the Captain)
+
+Captain: Funny. Code can be patched, but human trust? Not so easy.
+
+Player: Maybe not. But this system’s safe now.

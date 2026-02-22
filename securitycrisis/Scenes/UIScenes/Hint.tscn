@@ -1,0 +1,61 @@
+[gd_scene load_steps=4 format=3 uid="uid://kdhxos78cxbm"]
+
+[ext_resource type="Texture2D" uid="uid://cvti08lkoexy6" path="res://Assets/UI/Icons/help-icon.png" id="1_0x8dj"]
+[ext_resource type="Script" path="res://Scripts/SupportScripts/hint_manager.gd" id="1_c7dtj"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jjrsx"]
+bg_color = Color(0, 0.00467042, 0.028379, 0.870588)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.662452, 0.662452, 0.662452, 1)
+corner_radius_top_left = 12
+corner_radius_top_right = 12
+corner_radius_bottom_right = 12
+corner_radius_bottom_left = 12
+
+[node name="Hint" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_c7dtj")
+
+[node name="Panel" type="Panel" parent="."]
+layout_mode = 0
+offset_left = 1391.0
+offset_top = 5.0
+offset_right = 1915.0
+offset_bottom = 157.0
+theme_override_styles/panel = SubResource("StyleBoxFlat_jjrsx")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 1467.0
+offset_top = 21.0
+offset_right = 1894.0
+offset_bottom = 106.0
+text = "This is a helpful tip"
+autowrap_mode = 3
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 1394.0
+offset_top = 8.0
+offset_right = 1906.0
+offset_bottom = 520.0
+scale = Vector2(0.125, 0.125)
+texture = ExtResource("1_0x8dj")
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1832.0
+offset_top = 117.0
+offset_right = 1907.0
+offset_bottom = 148.0
+text = "Okay"
+
+[connection signal="pressed" from="Button" to="." method="_on_button_pressed"]

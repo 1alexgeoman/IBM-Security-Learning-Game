@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://b8lav5kvjd7fy"]
+
+[ext_resource type="PackedScene" uid="uid://bdwyqnnp2pcco" path="res://Scenes/objects/Enemies/Enemy.tscn" id="1_dawdk"]
+[ext_resource type="Script" path="res://Scripts/objects/enemies/phishing_enemy.gd" id="2_2k5l1"]
+
+[node name="Enemy2" instance=ExtResource("1_dawdk")]
+modulate = Color(0.133333, 0.129412, 1, 1)
+script = ExtResource("2_2k5l1")
+enemy_type = "PHISHING"

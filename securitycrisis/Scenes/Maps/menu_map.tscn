@@ -1,0 +1,52 @@
+[gd_scene load_steps=7 format=3 uid="uid://0c13d7t0trj1"]
+
+[ext_resource type="PackedScene" uid="uid://cjcgmhgmjuc7x" path="res://Scenes/Maps/cyber_map.tscn" id="1_n6c3o"]
+[ext_resource type="Script" path="res://Scripts/UI/menu_map.gd" id="1_xdc6p"]
+[ext_resource type="Script" path="res://Scripts/Defences/defences.gd" id="2_wx7ra"]
+[ext_resource type="PackedScene" uid="uid://b6vuovevcjn3b" path="res://Scenes/Characters/cyberworld_player.tscn" id="5_gl4f5"]
+[ext_resource type="PackedScene" path="res://Scenes/objects/Enemies/menu_enemy_spawner.tscn" id="5_jrt53"]
+
+[sub_resource type="Curve2D" id="Curve2D_jvhxr"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 384, 384, 0, 0, 0, 0, 2088, 384, 0, 0, 0, 0, 2088, 1432, 0, 0, 0, 0, 384, 1440, 0, 0, 0, 0, 384, 384)
+}
+point_count = 5
+
+[node name="MenuMap" type="Node2D"]
+script = ExtResource("1_xdc6p")
+
+[node name="CyberGameMap" parent="." instance=ExtResource("1_n6c3o")]
+
+[node name="Defences" type="Node2D" parent="."]
+script = ExtResource("2_wx7ra")
+
+[node name="PerimeterPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_jvhxr")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PerimeterPath"]
+position = Vector2(384, 384)
+
+[node name="CyberWorldPlayer" parent="." instance=ExtResource("5_gl4f5")]
+process_mode = 4
+visible = false
+
+[node name="EnemySpawner" parent="." node_paths=PackedStringArray("idle_path", "spawn_nodes") instance=ExtResource("5_jrt53")]
+idle_path = NodePath("../PerimeterPath")
+spawn_nodes = NodePath("Markers")
+
+[node name="Markers" type="Node" parent="EnemySpawner"]
+
+[node name="L01" type="Marker2D" parent="EnemySpawner/Markers"]
+position = Vector2(336, 112)
+
+[node name="L02" type="Marker2D" parent="EnemySpawner/Markers"]
+position = Vector2(2032, 160)
+
+[node name="L03" type="Marker2D" parent="EnemySpawner/Markers"]
+position = Vector2(122, 930)
+
+[node name="L04" type="Marker2D" parent="EnemySpawner/Markers"]
+position = Vector2(2296, 1160)
+
+[node name="L05" type="Marker2D" parent="EnemySpawner/Markers"]
+position = Vector2(816, 1664)

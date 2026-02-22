@@ -1,0 +1,79 @@
+[gd_scene load_steps=10 format=3 uid="uid://dg1s6o8o0qrmg"]
+
+[ext_resource type="Script" path="res://Scripts/Defences/Defense3.gd" id="1_docws"]
+[ext_resource type="Shader" path="res://Scenes/objects/Defenses/collision_circle_shader.gdshader" id="2_c2olr"]
+[ext_resource type="Texture2D" uid="uid://d2csd7spskyma" path="res://Assets/Defenses/sqlTower.png" id="2_jwrul"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jq15a"]
+size = Vector2(42, 90)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_klm2t"]
+radius = 231.054
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_2b3nn"]
+shader = ExtResource("2_c2olr")
+shader_parameter/blink_state = 1.0
+shader_parameter/blink_color = Vector4(0, 0, 0.2, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwbfl"]
+bg_color = Color(0.485703, 0.485704, 0.485703, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dkclq"]
+bg_color = Color(3.85046e-07, 0.742992, 0.996931, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8n5kk"]
+size = Vector2(42, 90)
+
+[node name="SQL ENERVATOR" type="Area2D" groups=["Defences"]]
+collision_layer = 2
+script = ExtResource("1_docws")
+
+[node name="Damage" type="CollisionShape2D" parent="."]
+position = Vector2(-1, 10)
+shape = SubResource("RectangleShape2D_jq15a")
+
+[node name="DetectRange" type="Area2D" parent="."]
+collision_mask = 3
+
+[node name="Detect" type="CollisionShape2D" parent="DetectRange"]
+shape = SubResource("CircleShape2D_klm2t")
+
+[node name="ColorRect" type="ColorRect" parent="DetectRange"]
+material = SubResource("ShaderMaterial_2b3nn")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -223.0
+offset_top = -225.0
+offset_right = 225.0
+offset_bottom = 228.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="Tower" type="Sprite2D" parent="."]
+position = Vector2(0, 7.94049)
+scale = Vector2(0.25, 0.2)
+texture = ExtResource("2_jwrul")
+offset = Vector2(-7.6292, 0.297533)
+
+[node name="healthBar" type="ProgressBar" parent="."]
+offset_left = -40.0
+offset_top = -64.0
+offset_right = 42.0
+offset_bottom = -59.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rwbfl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dkclq")
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1, 10)
+shape = SubResource("RectangleShape2D_8n5kk")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

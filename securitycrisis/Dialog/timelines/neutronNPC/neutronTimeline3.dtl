@@ -1,0 +1,64 @@
+[history action="clear"]
+Player:(Hmm...)
+
+Neutron:Hey Chief, thanks for helping defend—wait, what’s on your mind?
+
+Player:Just thinking... Have we gotten any leads on who’s behind these attacks?
+
+Neutron:Not yet. After that virus incident, we traced some patterns to known hacker groups — but here’s the odd part: they usually love to brag. This time? Silence.
+
+Player:Could’ve been hired by a third party.Maybe a new hacker group?
+
+Neutron:Exactly. Could be mercenaries or a brand-new player in the cyber underworld. Either way, until we know more, we should focus on tightening our defenses.
+
+Captain:Hey everyone! Just installed some new programs to boost our defenses.
+
+Neutron:Nice work, Captain. Did Nina help you check them?
+
+Captain:Nope. Got them from what looked like a trusted service — the specs seemed solid.
+
+Player:Mind if I take a look?
+
+(Player inspects the code, expression shifts to concern.)
+
+Player:These aren’t security tools at all. In fact, they’re...
+
+- Trojan Horse Malware
+	set {response} = "trojan"
+
+- Rootkits
+
+- Ransomware
+
+if {response} == "trojan":
+	Player:It’s [color=red]Trojan Horse Malware[/color] — disguised as [color=red]legitimate software[/color], but once installed, it opens hidden backdoors and avoids detection.
+
+else:
+	Player:Actually, it’s [color=red]Trojan Horse Malware[/color]. By bundling malware with [color=red]legitimate-looking software[/color], attackers attempt to sneak into the system and bypass security.
+
+Nina: It’s frightening how some threats disguise themselves so well. Just last week, a colleague downloaded what looked like [color=red]legitimate software[/color] for file compression—but it turned out to be malicious.
+
+Neutron:That’s bad news. It means the malware can slip past our defenses and operate freely.
+
+Neutron: Some Trojans install a hidden channel or what we call a [color=red]backdoor[/color] ,that allows attackers to slip in and out of the system unnoticed. It's like leaving a key under the mat for intruders.
+
+Nina: Attackers often trick employees into installing fake updates. That’s the power of [color=red]social engineering[/color]—it targets the human, not just the machine
+
+Captain:I dropped the ball on this one. Should’ve double-checked the source.
+
+Player:It happens — but we still have a chance to contain it. We can deploy a...
+
+- Firewall
+
+- Trojan Buster
+	set {response} = "trojanbuster"
+
+- Spam Filter
+
+if {response} == "trojanbuster":
+  Player:A [color=red]Trojan Buster[/color] specializes in identifying and removing hidden malicious code like this — even if it’s disguised.
+
+else:
+  Player:The best tool here is a [color=red]Trojan Buster[/color]. Standard security can miss hidden malware, but these Trojan Detectors will root it out.
+
+Neutron:That’s our best shot. Let’s deploy it fast — before this Trojan spreads any deeper!

@@ -1,0 +1,96 @@
+[gd_scene load_steps=12 format=3 uid="uid://tqv5wgb3mfhw"]
+
+[ext_resource type="PackedScene" uid="uid://cjcgmhgmjuc7x" path="res://Scenes/Maps/cyber_map.tscn" id="1_g2d3i"]
+[ext_resource type="Script" path="res://Scripts/maps/wave_map.gd" id="1_ry627"]
+[ext_resource type="PackedScene" uid="uid://b6vuovevcjn3b" path="res://Scenes/Characters/cyberworld_player.tscn" id="2_c3yy5"]
+[ext_resource type="Script" path="res://Scripts/Defences/defences.gd" id="3_2kpp2"]
+[ext_resource type="PackedScene" uid="uid://kj4or5rxuvl2" path="res://Scenes/objects/Enemies/enemy_spawner.tscn" id="4_gs8cy"]
+[ext_resource type="PackedScene" uid="uid://7geicakn7atr" path="res://Scenes/UIScenes/respawn_hud.tscn" id="6_3bdcx"]
+[ext_resource type="PackedScene" uid="uid://kdvypg24fud" path="res://Scenes/UIScenes/WaveHUD.tscn" id="7_1ci4c"]
+[ext_resource type="PackedScene" uid="uid://dd0wbjhfcj0c8" path="res://Scenes/SupportScenes/scene_transition_animation.tscn" id="8_b6t7o"]
+[ext_resource type="PackedScene" uid="uid://b3bknky2lhi1t" path="res://Scripts/UI/Minimap.tscn" id="8_k7vkl"]
+[ext_resource type="PackedScene" path="res://Scenes/Maps/paused_ui.tscn" id="10_lkqkb"]
+
+[sub_resource type="Curve2D" id="Curve2D_t7tnl"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 384, 384, 0, 0, 0, 0, 2088, 384, 0, 0, 0, 0, 2088, 1432, 0, 0, 0, 0, 384, 1440, 0, 0, 0, 0, 384, 384)
+}
+point_count = 5
+
+[node name="WaveMap" type="Node2D"]
+script = ExtResource("1_ry627")
+
+[node name="CyberGameMap" parent="." instance=ExtResource("1_g2d3i")]
+
+[node name="CyberWorldPlayer" parent="." instance=ExtResource("2_c3yy5")]
+position = Vector2(814, 868)
+
+[node name="Defences" type="Node2D" parent="."]
+script = ExtResource("3_2kpp2")
+
+[node name="EnemySpawner" parent="." node_paths=PackedStringArray("idle_path", "spawn_nodes") instance=ExtResource("4_gs8cy")]
+unique_name_in_owner = true
+idle_path = NodePath("../PerimeterPath")
+spawn_nodes = NodePath("Markers")
+
+[node name="Markers" type="Node" parent="EnemySpawner"]
+
+[node name="L01" type="Marker2D" parent="EnemySpawner/Markers"]
+position = Vector2(336, 112)
+
+[node name="L02" type="Marker2D" parent="EnemySpawner/Markers"]
+position = Vector2(2032, 160)
+
+[node name="L03" type="Marker2D" parent="EnemySpawner/Markers"]
+position = Vector2(122, 930)
+
+[node name="L04" type="Marker2D" parent="EnemySpawner/Markers"]
+position = Vector2(2296, 1160)
+
+[node name="L05" type="Marker2D" parent="EnemySpawner/Markers"]
+position = Vector2(816, 1664)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(952, 516)
+zoom = Vector2(0.92, 0.92)
+
+[node name="UI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+
+[node name="RespawnHud" parent="UI" node_paths=PackedStringArray("respawn_timer") instance=ExtResource("6_3bdcx")]
+visible = false
+respawn_timer = NodePath("../../RespawnTimer")
+
+[node name="WaveHud" parent="UI" instance=ExtResource("7_1ci4c")]
+
+[node name="Minimap" parent="UI" node_paths=PackedStringArray("game_map", "player") instance=ExtResource("8_k7vkl")]
+offset_left = 1680.0
+offset_right = 1680.0
+game_map = NodePath("../../CyberGameMap")
+player = NodePath("../../CyberWorldPlayer")
+
+[node name="RespawnLocation" type="Marker2D" parent="."]
+position = Vector2(1216, 1136)
+
+[node name="RespawnTimer" type="Timer" parent="."]
+wait_time = 10.0
+one_shot = true
+
+[node name="PerimeterPath" type="Path2D" parent="."]
+curve = SubResource("Curve2D_t7tnl")
+
+[node name="PathFollow2D" type="PathFollow2D" parent="PerimeterPath"]
+position = Vector2(384, 384)
+
+[node name="SceneTransitionAnimation" parent="." instance=ExtResource("8_b6t7o")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="PausedUI" parent="CanvasLayer" instance=ExtResource("10_lkqkb")]
+
+[connection signal="player_died" from="CyberWorldPlayer" to="." method="_on_cyber_world_player_player_died"]
+[connection signal="player_health_changed" from="CyberWorldPlayer" to="." method="_on_cyber_world_player_player_health_changed"]
+[connection signal="player_health_changed" from="CyberWorldPlayer" to="UI/WaveHud" method="_on_cyber_world_player_player_health_changed"]
+[connection signal="next_wave" from="EnemySpawner" to="UI/WaveHud" method="_on_enemy_spawner_next_wave"]
+[connection signal="timeout" from="RespawnTimer" to="." method="_on_respawn_timer_timeout"]

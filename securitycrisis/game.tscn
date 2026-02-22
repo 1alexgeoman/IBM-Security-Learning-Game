@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://d3x33blm16pf0"]
+
+[ext_resource type="PackedScene" uid="uid://bv50k0jnqgeq7" path="res://Scenes/UIScenes/main_menu.tscn" id="2_kkwwr"]
+
+[node name="Game" type="Node"]
+
+[node name="MainMenu" parent="." instance=ExtResource("2_kkwwr")]
+unique_name_in_owner = true

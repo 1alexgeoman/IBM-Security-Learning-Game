@@ -1,0 +1,55 @@
+[history action="clear"]
+Neutron: You did it again! Really glad the sponsors brought you in. If you hadn’t suggested those defenses, we would’ve lost a ton of critical files.
+
+Player: Haha — though if files were already lost, I’d say the smart move would be setting up cloud storage. That way, we can back everything up and restore it in emergencies.
+
+Neutron: Good thinking — we’ll definitely consider that.
+
+Nina: Hey, CDSO — something odd just happened. I got some emails this morning that looked like they were sent from you... but I heard you talking to Neutron the whole time.
+
+Player: That’s strange. I haven’t sent any emails today.
+
+Nina: Really? But look at this — the sender’s address looks almost identical to yours.
+
+(Player looks at email)
+Player: Although the address looks close to mine, it’s slightly off. Seems like someone is using...
+
+- Phishing tactics
+	set {response} = "phishing"
+
+- Ransomware
+
+- SQL Injection
+
+if {response} == "phishing":
+	Nina: Phishing? Right — that’s when attackers pretend to be someone trustworthy to trick people into handing over [color=red]sensitive information[/color].
+
+else:
+	Neutron: Actually, the right term is [color=red]phishing[/color]. Attackers disguise themselves as someone you trust to steal [color=red]sensitive information[/color] or access systems.
+
+Player: (Who would go this far to fake my identity just to request high-level system access...?)
+
+Nina: Attackers often rely on [color=red]email spoofing[/color] to impersonate reputable contacts and deceive the recipient, so we'll have to be more careful from now on.
+
+Neutron: In any case — what can we do to make sure fake emails get detected and blocked?
+
+Player: We could set up a...
+
+- Trojan Buster
+
+- AI Spam-Filter
+	set {response} = "spamfilter"
+
+- Anti-virus
+
+if {response} == "spamfilter":
+	Captain: An [color=red]AI Spam-Filter[/color] would scan incoming emails for suspicious patterns and flag them before anyone clicks.
+
+else:
+	Captain: For phishing, the best tool is an [color=red]AI Spam-Filter[/color]. It spots suspicious emails and isolates them before anyone can get tricked.
+
+Captain: That way, only verified emails reach us. The rest? Quarantined.
+
+Neutron: Make sure not to press any [color=red]suspicious links[/color] too as these are a common method cybercriminals often use with shortened or disguised URLs to hide the real destination.
+
+Nina: Great! I’ll help you set it up right away.

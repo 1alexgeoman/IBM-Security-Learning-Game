@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://dldyqvo8u165k"]
+
+[ext_resource type="PackedScene" uid="uid://ca780k2ql6r0s" path="res://Scenes/objects/Projectiles/BasicProjectile.tscn" id="1_nlbpk"]
+[ext_resource type="Script" path="res://Scripts/Defences/TargettingProjectile.gd" id="2_iw2u3"]
+
+[node name="BasicProjectile" instance=ExtResource("1_nlbpk")]
+script = ExtResource("2_iw2u3")
+
+[node name="Sprite2D" parent="." index="0"]
+modulate = Color(0.856221, 0.271839, 0.320795, 1)

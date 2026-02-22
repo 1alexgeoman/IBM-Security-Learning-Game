@@ -1,0 +1,83 @@
+[gd_scene load_steps=10 format=3 uid="uid://ownpsdc23sah"]
+
+[ext_resource type="Script" path="res://Scripts/Defences/trojan_detector.gd" id="1_t317s"]
+[ext_resource type="Texture2D" uid="uid://d1fa3ibquxqor" path="res://Assets/Defenses/trojanTower.png" id="2_rpdlm"]
+[ext_resource type="Shader" path="res://Scenes/objects/Defenses/collision_circle_shader.gdshader" id="2_wd3pl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_desb7"]
+size = Vector2(47, 79.5)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0yi7p"]
+radius = 421.03
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_fjduc"]
+shader = ExtResource("2_wd3pl")
+shader_parameter/blink_state = 1.0
+shader_parameter/blink_color = Vector4(0, 0.2, 0, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4fusi"]
+bg_color = Color(0.485703, 0.485704, 0.485703, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2rrqx"]
+bg_color = Color(3.85046e-07, 0.742992, 0.996931, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5418c"]
+size = Vector2(37.7521, 67.1794)
+
+[node name="TROJAN BUSTER" type="Area2D" groups=["Defences"]]
+collision_layer = 2
+script = ExtResource("1_t317s")
+
+[node name="Damage" type="CollisionShape2D" parent="."]
+position = Vector2(-1.5, -29.25)
+shape = SubResource("RectangleShape2D_desb7")
+
+[node name="DetectRange" type="Area2D" parent="."]
+collision_layer = 2
+
+[node name="Detect" type="CollisionShape2D" parent="DetectRange"]
+position = Vector2(0, -21)
+shape = SubResource("CircleShape2D_0yi7p")
+
+[node name="ColorRect" type="ColorRect" parent="DetectRange"]
+material = SubResource("ShaderMaterial_fjduc")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -416.0
+offset_top = -428.0
+offset_right = 418.0
+offset_bottom = 398.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+
+[node name="tower" type="Sprite2D" parent="."]
+position = Vector2(-3, -23)
+scale = Vector2(0.310225, 0.3)
+texture = ExtResource("2_rpdlm")
+offset = Vector2(12.9525, 2.69553)
+
+[node name="healthBar" type="ProgressBar" parent="."]
+offset_left = -41.0
+offset_top = -77.0
+offset_right = 41.0
+offset_bottom = -72.0
+theme_override_styles/background = SubResource("StyleBoxFlat_4fusi")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2rrqx")
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+collision_layer = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-1.0977, -29)
+scale = Vector2(1.22365, 1.16107)
+shape = SubResource("RectangleShape2D_5418c")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_entered" from="DetectRange" to="." method="_on_detect_range_area_entered"]

@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://i1nlrqi2vpao"]
+
+[ext_resource type="Script" path="res://Scripts/Defences/BasicProjecile.gd" id="1_b3ykn"]
+[ext_resource type="Texture2D" uid="uid://sb24843ae14t" path="res://Assets/Defenses/towerDefense_tile251.png" id="2_281rt"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xnsfc"]
+radius = 5.0
+
+[node name="Missile" type="Area2D" groups=["Projectiles"]]
+collision_layer = 4
+script = ExtResource("1_b3ykn")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -4.76837e-07)
+scale = Vector2(0.588, 0.6)
+texture = ExtResource("2_281rt")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+visible = false
+shape = SubResource("CircleShape2D_xnsfc")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

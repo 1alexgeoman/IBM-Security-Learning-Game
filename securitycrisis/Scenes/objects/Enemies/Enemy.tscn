@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://bdwyqnnp2pcco"]
+
+[ext_resource type="Script" path="res://Scripts/objects/enemies/enemy.gd" id="1_awcdp"]
+[ext_resource type="Texture2D" uid="uid://cebvxxr4q6ao4" path="res://Assets/Player/Soldier 1/soldier1_gun.png" id="2_i46u7"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_2pglm"]
+radius = 45.0444
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3i764"]
+bg_color = Color(0.962988, 0.387206, 0.319308, 1)
+corner_radius_top_left = 4
+corner_radius_top_right = 4
+corner_radius_bottom_right = 4
+corner_radius_bottom_left = 4
+
+[node name="Enemy" type="Area2D" groups=["Enemies"]]
+collision_mask = 6
+script = ExtResource("1_awcdp")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(1.5, 1.5)
+texture = ExtResource("2_i46u7")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_2pglm")
+
+[node name="HealthBar" type="ProgressBar" parent="."]
+offset_left = -46.0
+offset_top = -48.0
+offset_right = 44.0
+offset_bottom = -40.0
+theme_override_styles/fill = SubResource("StyleBoxFlat_3i764")
+rounded = true
+show_percentage = false
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

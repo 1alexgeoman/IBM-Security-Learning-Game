@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cppdhjkdaff14"]
+
+[ext_resource type="PackedScene" uid="uid://bdwyqnnp2pcco" path="res://Scenes/objects/Enemies/Enemy.tscn" id="1_knaos"]
+[ext_resource type="Script" path="res://Scripts/objects/enemies/trojan_enemy.gd" id="2_3qd1r"]
+
+[node name="Enemy2" instance=ExtResource("1_knaos")]
+modulate = Color(1, 1, 0, 1)
+script = ExtResource("2_3qd1r")
+enemy_type = "TROJAN"

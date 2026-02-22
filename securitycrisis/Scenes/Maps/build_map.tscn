@@ -1,0 +1,324 @@
+[gd_scene load_steps=19 format=3 uid="uid://xsb04ol3dl02"]
+
+[ext_resource type="Script" path="res://Scripts/maps/build_map.gd" id="1_uq615"]
+[ext_resource type="PackedScene" uid="uid://b7y42k7musnj8" path="res://Scenes/Maps/cyber_map.tscn" id="2_ppkx2"]
+[ext_resource type="Script" path="res://Scripts/Defences/defences.gd" id="3_cm2x3"]
+[ext_resource type="Texture2D" uid="uid://cel8856ingvn6" path="res://Assets/UI/Buttons/button_rectangle_depth_flat.png" id="5_1w2xb"]
+[ext_resource type="Texture2D" uid="uid://yuv4ro6advi1" path="res://Assets/UI/Buttons/buttonLong_beige.png" id="5_d3em8"]
+[ext_resource type="Texture2D" uid="uid://cj5chiciffdhm" path="res://Assets/Defenses/towerDefense_tile249.png" id="5_xgcb8"]
+[ext_resource type="Texture2D" uid="uid://bdcgv1el8e80w" path="res://Assets/UI/Buttons/buttonSquare_grey_pressed.png" id="6_b1ho3"]
+[ext_resource type="Script" path="res://Scripts/UI/ui.gd" id="6_m4w5j"]
+[ext_resource type="Texture2D" uid="uid://cp6d5i5vhby4f" path="res://Assets/UI/Buttons/button_rectangle_depth_gloss.png" id="6_wv4oa"]
+[ext_resource type="LabelSettings" uid="uid://8oatwmkmanwe" path="res://Resources/Label_settings/new_label_settings.tres" id="7_gccyy"]
+[ext_resource type="Texture2D" uid="uid://3i84tl2keqij" path="res://Assets/Defenses/Firewall-nb.png" id="8_4cyab"]
+[ext_resource type="PackedScene" uid="uid://bk2jteaataqp3" path="res://Scenes/Objects/Defenses/deploy_count.tscn" id="8_783cr"]
+[ext_resource type="Texture2D" uid="uid://dqmvmtf6pbiql" path="res://Assets/UI/Buttons/button_round_depth_gloss.png" id="8_n1xr0"]
+[ext_resource type="Texture2D" uid="uid://b7dyabjk0qpds" path="res://Assets/UI/Buttons/button_round_depth_flat.png" id="9_i8x1c"]
+[ext_resource type="Texture2D" uid="uid://umr3gav6esmg" path="res://Assets/Defenses/towerDefense_turret3.png" id="10_rui58"]
+[ext_resource type="Texture2D" uid="uid://cwrq1qwc48f4t" path="res://Assets/Defenses/towerDefense_tile205.png" id="11_aj1er"]
+[ext_resource type="Texture2D" uid="uid://d2s6x7ggq3a84" path="res://Assets/Defenses/trojanTower.png" id="12_fqsyn"]
+[ext_resource type="Texture2D" uid="uid://3rqwl6q3b1k5" path="res://Assets/Defenses/sqlTower.png" id="13_se4cj"]
+
+[node name="BuildMap" type="Node2D"]
+script = ExtResource("1_uq615")
+
+[node name="CyberGameMap" parent="." instance=ExtResource("2_ppkx2")]
+unique_name_in_owner = true
+
+[node name="Defences" type="Node2D" parent="."]
+script = ExtResource("3_cm2x3")
+
+[node name="UI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_m4w5j")
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+metadata/_edit_use_anchors_ = true
+
+[node name="BackButton" type="TextureButton" parent="UI/HUD"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 30.0
+offset_top = 11.0
+offset_right = 222.0
+offset_bottom = 75.0
+texture_normal = ExtResource("6_wv4oa")
+texture_pressed = ExtResource("5_1w2xb")
+
+[node name="Label" type="Label" parent="UI/HUD/BackButton"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -98.0
+offset_top = -31.0
+offset_right = 97.0
+offset_bottom = 28.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 40
+text = "BACK"
+label_settings = ExtResource("7_gccyy")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="TextureRect" type="TextureRect" parent="UI/HUD"]
+texture_filter = 1
+layout_mode = 0
+offset_left = -9.0
+offset_top = 891.0
+offset_right = 1791.0
+offset_bottom = 1150.0
+scale = Vector2(1.06062, 0.701739)
+texture = ExtResource("5_d3em8")
+
+[node name="BuildBar" type="VBoxContainer" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_left = 24.0
+offset_top = -23.9999
+offset_right = 204.0
+offset_bottom = 1076.0
+grow_vertical = 0
+rotation = -1.5708
+scale = Vector2(0.837344, 1)
+
+[node name="FIREWALL" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+texture_filter = 1
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_b1ho3")
+stretch_mode = 0
+
+[node name="Label" parent="UI/HUD/BuildBar/FIREWALL" instance=ExtResource("8_783cr")]
+layout_mode = 0
+offset_left = 163.715
+offset_top = 129.863
+offset_right = 197.715
+offset_bottom = 167.863
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/FIREWALL"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 92.7206
+offset_top = -90.9994
+offset_right = 272.721
+offset_bottom = 89.0005
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("8_4cyab")
+expand_mode = 1
+
+[node name="ANTI-MALWARE TURRET" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+texture_filter = 1
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_b1ho3")
+stretch_mode = 0
+
+[node name="Label" parent="UI/HUD/BuildBar/ANTI-MALWARE TURRET" instance=ExtResource("8_783cr")]
+layout_mode = 0
+offset_left = 161.952
+offset_top = 128.882
+offset_right = 195.952
+offset_bottom = 166.882
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/ANTI-MALWARE TURRET"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_xgcb8")
+expand_mode = 1
+
+[node name="ANTI-VIRUS" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+texture_filter = 1
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_b1ho3")
+stretch_mode = 0
+
+[node name="Label" parent="UI/HUD/BuildBar/ANTI-VIRUS" instance=ExtResource("8_783cr")]
+layout_mode = 0
+offset_left = 161.224
+offset_top = 133.0
+offset_right = 195.224
+offset_bottom = 171.0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/ANTI-VIRUS"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -88.8057
+offset_top = -84.0
+offset_right = 91.1943
+offset_bottom = 96.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("10_rui58")
+expand_mode = 1
+
+[node name="AI SPAM-FILTER" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+texture_filter = 1
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_b1ho3")
+stretch_mode = 0
+
+[node name="Label" parent="UI/HUD/BuildBar/AI SPAM-FILTER" instance=ExtResource("8_783cr")]
+layout_mode = 0
+offset_left = 163.715
+offset_top = 129.863
+offset_right = 197.715
+offset_bottom = 167.863
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/AI SPAM-FILTER"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -90.0
+offset_top = -90.0
+offset_right = 90.0
+offset_bottom = 90.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("11_aj1er")
+expand_mode = 1
+
+[node name="TROJAN BUSTER" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+texture_filter = 1
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_b1ho3")
+stretch_mode = 0
+
+[node name="Label" parent="UI/HUD/BuildBar/TROJAN BUSTER" instance=ExtResource("8_783cr")]
+layout_mode = 0
+offset_left = 164.807
+offset_top = 133.0
+offset_right = 198.807
+offset_bottom = 171.0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/TROJAN BUSTER"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 85.5519
+offset_top = -86.9995
+offset_right = 265.552
+offset_bottom = 93.0005
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("12_fqsyn")
+expand_mode = 1
+
+[node name="SQL ENERVATOR" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+texture_filter = 1
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("6_b1ho3")
+stretch_mode = 0
+
+[node name="Label" parent="UI/HUD/BuildBar/SQL ENERVATOR" instance=ExtResource("8_783cr")]
+layout_mode = 0
+offset_left = 166.001
+offset_top = 133.0
+offset_right = 200.001
+offset_bottom = 171.0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/SQL ENERVATOR"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 93.9109
+offset_top = -87.9994
+offset_right = 273.911
+offset_bottom = 92.0005
+grow_horizontal = 2
+grow_vertical = 2
+rotation = 1.5708
+texture = ExtResource("13_se4cj")
+expand_mode = 1
+
+[node name="StartButton" type="TextureButton" parent="UI/HUD"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 1689.0
+offset_top = 911.0
+offset_right = 1753.0
+offset_bottom = 975.0
+scale = Vector2(2, 2)
+action_mode = 0
+texture_normal = ExtResource("8_n1xr0")
+texture_pressed = ExtResource("9_i8x1c")
+
+[node name="Label" type="Label" parent="UI/HUD/StartButton"]
+layout_mode = 0
+offset_left = 7.96224
+offset_top = 17.0124
+offset_right = 59.9622
+offset_bottom = 40.0124
+theme_override_colors/font_color = Color(0.054902, 0, 0, 1)
+text = "START "
+
+[node name="Camera2D" type="Camera2D" parent="."]
+unique_name_in_owner = true
+position = Vector2(1231, 975)
+scale = Vector2(-1.01633, 4.67681)
+zoom = Vector2(0.78, 0.78)

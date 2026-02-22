@@ -1,0 +1,39 @@
+[gd_scene load_steps=2 format=3 uid="uid://wg6b2vo3qwvf"]
+
+[ext_resource type="Script" path="res://Scripts/UI/thank_you.gd" id="1_r0e5d"]
+
+[node name="ThankYou" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_r0e5d")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1923.0
+offset_bottom = 1097.0
+color = Color(0.00351917, 0.00351917, 0.00351917, 1)
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 183.0
+offset_top = 195.0
+offset_right = 1613.0
+offset_bottom = 428.0
+theme_override_font_sizes/font_size = 40
+text = "Thank You for playing our game. The learning part of the game has ended.
+However we still have one more special round for you to play.
+We hope you enjoy it."
+
+[node name="Button" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1600.0
+offset_top = 943.0
+offset_right = 1725.0
+offset_bottom = 1007.0
+theme_override_colors/font_hover_color = Color(0.806628, 0.720569, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "START"

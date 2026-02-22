@@ -1,0 +1,103 @@
+[gd_scene load_steps=7 format=3 uid="uid://bv50k0jnqgeq7"]
+
+[ext_resource type="Script" path="res://Scripts/UI/main_menu.gd" id="1_1unsq"]
+[ext_resource type="PackedScene" uid="uid://0c13d7t0trj1" path="res://Scenes/Maps/menu_map.tscn" id="2_6rbf1"]
+[ext_resource type="Texture2D" uid="uid://cp6d5i5vhby4f" path="res://Assets/UI/Buttons/button_rectangle_depth_gloss.png" id="2_holr8"]
+[ext_resource type="FontFile" uid="uid://bevs4mlbet5wb" path="res://Resources/Fonts/alagard.ttf" id="2_yggwk"]
+[ext_resource type="Texture2D" uid="uid://cel8856ingvn6" path="res://Assets/UI/Buttons/button_rectangle_depth_flat.png" id="3_pm35a"]
+
+[sub_resource type="Curve2D" id="Curve2D_abya1"]
+_data = {
+"points": PackedVector2Array(0, 0, 0, 0, 962, 541, 0, 0, 0, 0, 1505, 542, 0, 0, 0, 0, 1506, 1286, 0, 0, 0, 0, 962, 1286, 0, 0, 0, 0, 962, 541)
+}
+point_count = 5
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_1unsq")
+
+[node name="MenuMap" parent="." instance=ExtResource("2_6rbf1")]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(960, 539)
+
+[node name="CameraPath" type="Path2D" parent="."]
+position = Vector2(-2, -2)
+curve = SubResource("Curve2D_abya1")
+
+[node name="CameraFollow" type="PathFollow2D" parent="CameraPath"]
+position = Vector2(962, 541)
+rotation = 0.00184162
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.313726, 0.313726, 0.313726, 0.556863)
+
+[node name="Title" type="Label" parent="CanvasLayer"]
+offset_left = 220.0
+offset_top = 291.0
+offset_right = 1714.0
+offset_bottom = 385.0
+size_flags_vertical = 0
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
+theme_override_fonts/font = ExtResource("2_yggwk")
+theme_override_font_sizes/font_size = 100
+text = "SecurityCrisis: The Last Defence
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_right = 5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 80
+theme_override_constants/margin_top = 80
+theme_override_constants/margin_right = 80
+theme_override_constants/margin_bottom = 80
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/MarginContainer"]
+custom_minimum_size = Vector2(400, 400)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 40
+
+[node name="GameStart" type="TextureButton" parent="CanvasLayer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(400, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 2
+texture_normal = ExtResource("2_holr8")
+texture_pressed = ExtResource("3_pm35a")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="CanvasLayer/MarginContainer/VBoxContainer/GameStart"]
+modulate = Color(0.101868, 0.101868, 0.101868, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Start"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="CanvasLayer/MarginContainer/VBoxContainer/GameStart" to="." method="_on_game_start_pressed"]

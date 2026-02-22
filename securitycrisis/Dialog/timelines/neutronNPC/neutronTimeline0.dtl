@@ -1,0 +1,53 @@
+[history action="clear"]
+Neutron: Welcome to the [color=red]National Nuclear Research Facility[/color]. As our new [color=red]Chief Digital Security Officer[/color], your mission is critical.
+
+Neutron: Our facility leads in nuclear science and energy research—we supply a significant portion of the country’s power and work on breakthrough technologies that could shape our future.
+
+Neutron: The energy sector ranks as the third most targeted industry, following finance and manufacturing.
+
+Neutron: As such, we’ve been hit by multiple cyberattacks lately, disrupting our core operations. These attacks delay power distribution and halt crucial research.
+
+Neutron: Most attacks include unauthorized server access and traffic floods that overload our systems.
+
+Neutron: For now, let me introduce you to some key allies you'll be working with.
+
+Nina: Hi, I’m Nina, the System Defense Specialist. I handle all security installations—so drop by my office when you need new defences or upgrades.
+
+Captain: And I’m Captain Reynolds. Call me Captain—I may be old, but I’ve got the experience to back it up. Come ask me for advice whenever you're having problems with your job.
+
+Neutron: Your task is to mitigate cyber threats and stop breaches using your knowledge. Every successful defense strengthens our facilities and upgrades our defenses.
+
+
+ALERT! SYSTEM BREACH DETECTED!
+
+Neutron: What?!
+
+Captain: We barely recovered from an attack the other day. Our systems are still recovering—we simply can’t handle another wave of malicious traffic.
+
+Nina: Exactly. The traffic flood slows our network so much that we can’t run essential operations like reactor maintenance.
+
+Player: From what you’ve described, this seems like a...
+
+- Trojan Horse
+
+- Denial of Service (DoS) attack
+	set {response} = "dos"
+
+- SQL Injection
+
+if {response} == "dos":
+	Captain: Yeah, you’re right, but this one’s more serious — a [color=red]Distributed Denial of Service (DDoS)[/color] attack.
+	Captain: Unlike a DoS from a single machine, DDoS uses many [color=red]distributed[/color] devices all attacking at once.
+
+else:
+	Captain: Actually, it’s a [color=red]Distributed Denial of Service (DDoS)[/color] attack. Compared to DoS which uses one system, DDoS is a swarm of [color=red]distributed[/color] devices flooding the network.
+Captain: Log checks showed thousands of different IP addresses worldwide — meaning a [color=red]botnet[/color] was behind it.
+
+Captain: A botnet makes attacks far more effective than a single system. More machines = more traffic = more damage.
+
+Neutron: Attackers often also use [color=red]IP Spoofing[/color] to fake the origin of the traffic, making it hard to block them.
+
+Nina: And if a site becomes unusually [color=red]slow or unresponsive[/color] — that’s a classic sign of a DDoS attack.
+
+Captain: Let’s adjust the  [color=red]firewall [/color] rules and deploy countermeasures. Nina can help you with that. Meet her at the [color=red] left end[/color] of the map.
+Captain: After that jump into the cyber world by accessing the [color=red]terminal[/color] which is the [color=red]white device[/color] next to us.

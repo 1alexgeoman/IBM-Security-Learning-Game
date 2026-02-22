@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://ccfw65f7gc3sb"]
+
+[node name="Node" type="Node"]
+
+[node name="ApiReqNode" type="HTTPRequest" parent="."]

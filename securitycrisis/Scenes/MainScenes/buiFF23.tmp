@@ -1,0 +1,88 @@
+[gd_scene load_steps=10 format=3 uid="uid://bji0viu7bjydv"]
+
+[ext_resource type="PackedScene" uid="uid://83v4dfvu8h3g" path="res://Scenes/Maps/map.tscn" id="2_txb6i"]
+[ext_resource type="PackedScene" uid="uid://di1lw40hnlsl4" path="res://Scenes/Maps/Defenses/Defense2.tscn" id="3_bsqec"]
+[ext_resource type="Script" path="res://Scripts/Defences/Defense2.gd" id="4_an1qw"]
+[ext_resource type="PackedScene" uid="uid://cru6o6ktqauqu" path="res://Scenes/Maps/Defenses/Defense1.tscn" id="5_u0jrg"]
+[ext_resource type="Script" path="res://Scripts/Defences/Defense1.gd" id="6_8vncw"]
+[ext_resource type="Script" path="res://Scripts/Defences/ui.gd" id="6_bdgsq"]
+[ext_resource type="Texture2D" uid="uid://cxh3exl7kkhec" path="res://Assets/Player/PNG/UI/button_square_flat.png" id="7_67hkp"]
+[ext_resource type="Texture2D" uid="uid://cj5chiciffdhm" path="res://Assets/Defences/towerDefense_tile249.png" id="8_0mi24"]
+[ext_resource type="Texture2D" uid="uid://taoivcy30dks" path="res://Assets/Defences/towerDefense_tile250.png" id="9_ewtl8"]
+
+[node name="BuildMap" type="Node2D"]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(959, 549)
+
+[node name="Map" parent="." instance=ExtResource("2_txb6i")]
+
+[node name="Defense2" parent="." instance=ExtResource("3_bsqec")]
+position = Vector2(688, 550)
+script = ExtResource("4_an1qw")
+
+[node name="Defense1" parent="." instance=ExtResource("5_u0jrg")]
+position = Vector2(1056, 702)
+script = ExtResource("6_8vncw")
+
+[node name="UI" type="CanvasLayer" parent="."]
+script = ExtResource("6_bdgsq")
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="BuildBar" type="VBoxContainer" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 1.0
+anchor_top = 25.3
+anchor_right = 1.0
+anchor_bottom = 25.3
+offset_left = -9.0
+offset_top = -400.0
+offset_right = 191.0
+
+[node name="Defense1" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("7_67hkp")
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/Defense1"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 1.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 10)
+texture = ExtResource("8_0mi24")
+
+[node name="Defense2" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+custom_minimum_size = Vector2(150, 150)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("7_67hkp")
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/Defense2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -1.0
+offset_right = -1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(10, 10)
+texture = ExtResource("9_ewtl8")

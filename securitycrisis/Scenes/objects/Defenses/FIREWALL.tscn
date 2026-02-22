@@ -1,0 +1,63 @@
+[gd_scene load_steps=7 format=3 uid="uid://b6tcvgvnnfcly"]
+
+[ext_resource type="Script" path="res://Scripts/Defences/firewall.gd" id="1_vnppo"]
+[ext_resource type="Texture2D" uid="uid://cumi7bms8drlt" path="res://Assets/Defenses/Firewall64.png" id="2_tyvs5"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qiame"]
+size = Vector2(64, 64)
+
+[sub_resource type="Animation" id="Animation_hwaf2"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="Animation" id="Animation_6s745"]
+resource_name = "firewall_attack"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath(".:modulate")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.5, 1),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Color(1, 1, 1, 1), Color(0.785282, 0.318783, 0.340147, 1), Color(1, 1, 1, 1)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_oqe8p"]
+_data = {
+"RESET": SubResource("Animation_hwaf2"),
+"firewall_attack": SubResource("Animation_6s745")
+}
+
+[node name="FIREWALL" type="Area2D" groups=["Defences"]]
+collision_layer = 2
+collision_mask = 5
+script = ExtResource("1_vnppo")
+targetable_defence = false
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_tyvs5")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qiame")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_oqe8p")
+}
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]
+[connection signal="area_exited" from="." to="." method="_on_area_exited"]

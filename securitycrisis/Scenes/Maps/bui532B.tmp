@@ -1,0 +1,102 @@
+[gd_scene load_steps=11 format=3 uid="uid://w0d6gmiibmcy"]
+
+[ext_resource type="Script" path="res://Scripts/build_map.gd" id="1_uq615"]
+[ext_resource type="PackedScene" uid="uid://b31hv5ejxfiur" path="res://Scenes/Maps/Enemies/Enemy.tscn" id="2_5jpn4"]
+[ext_resource type="PackedScene" uid="uid://83v4dfvu8h3g" path="res://Scenes/Maps/map.tscn" id="2_txb6i"]
+[ext_resource type="PackedScene" uid="uid://di1lw40hnlsl4" path="res://Scenes/Maps/Defenses/Defense2.tscn" id="4_xtyyt"]
+[ext_resource type="PackedScene" uid="uid://cru6o6ktqauqu" path="res://Scenes/Maps/Defenses/Defense1.tscn" id="5_u0jrg"]
+[ext_resource type="Texture2D" uid="uid://cj5chiciffdhm" path="res://Assets/Defenses/towerDefense_tile249.png" id="5_xgcb8"]
+[ext_resource type="Texture2D" uid="uid://taoivcy30dks" path="res://Assets/Defenses/towerDefense_tile250.png" id="6_6b8by"]
+[ext_resource type="Script" path="res://Scripts/Defences/ui.gd" id="6_bdgsq"]
+[ext_resource type="Texture2D" uid="uid://cxh3exl7kkhec" path="res://Assets/Player/PNG/UI/button_square_flat.png" id="7_67hkp"]
+[ext_resource type="PackedScene" uid="uid://b6vuovevcjn3b" path="res://Scenes/Characters/cyberworld_player.tscn" id="10_8kxb3"]
+
+[node name="BuildMap" type="Node2D"]
+script = ExtResource("1_uq615")
+enemy_scene = ExtResource("2_5jpn4")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(962, 547)
+
+[node name="Map" parent="." instance=ExtResource("2_txb6i")]
+
+[node name="Defenses" type="Node2D" parent="."]
+
+[node name="Defense1" parent="Defenses" instance=ExtResource("5_u0jrg")]
+position = Vector2(1088, 832)
+
+[node name="Defense2" parent="Defenses" instance=ExtResource("4_xtyyt")]
+position = Vector2(1600, 320)
+
+[node name="UI" type="CanvasLayer" parent="."]
+unique_name_in_owner = true
+script = ExtResource("6_bdgsq")
+
+[node name="HUD" type="Control" parent="UI"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="BuildBar" type="VBoxContainer" parent="UI/HUD"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -414.0
+offset_right = 200.0
+offset_bottom = -14.0
+grow_vertical = 0
+
+[node name="Defense1" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("7_67hkp")
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/Defense1"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("5_xgcb8")
+
+[node name="Defense2" type="TextureButton" parent="UI/HUD/BuildBar" groups=["build_buttons"]]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture_normal = ExtResource("7_67hkp")
+stretch_mode = 0
+
+[node name="Icon" type="TextureRect" parent="UI/HUD/BuildBar/Defense2"]
+custom_minimum_size = Vector2(180, 180)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -32.0
+offset_top = -32.0
+offset_right = 32.0
+offset_bottom = 32.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("6_6b8by")
+
+[node name="CyberWorldPlayer" parent="." instance=ExtResource("10_8kxb3")]

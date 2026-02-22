@@ -1,0 +1,18 @@
+[gd_scene load_steps=4 format=3 uid="uid://8wx60qi3q0l"]
+
+[ext_resource type="Texture2D" uid="uid://daq6kw4dw8l4h" path="res://Assets/NPCs/Captain.png" id="1_bfbjc"]
+[ext_resource type="Script" path="res://Scripts/Characters/captain_npc.gd" id="1_jxprb"]
+[ext_resource type="PackedScene" uid="uid://cd7wceoaptjrj" path="res://Scenes/Characters/npc.tscn" id="1_khwua"]
+
+[node name="Npc" instance=ExtResource("1_khwua")]
+script = ExtResource("1_jxprb")
+
+[node name="Sprite" parent="." index="0"]
+position = Vector2(0, 0)
+scale = Vector2(2, 2)
+texture = ExtResource("1_bfbjc")
+hframes = 1
+frame = 0
+
+[node name="CollisionShape2D" parent="." index="4"]
+position = Vector2(0, 2.5)

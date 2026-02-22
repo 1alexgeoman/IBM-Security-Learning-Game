@@ -1,0 +1,28 @@
+[gd_scene load_steps=5 format=3 uid="uid://cgutlubh247l8"]
+
+[ext_resource type="PackedScene" uid="uid://bdwyqnnp2pcco" path="res://Scenes/objects/Enemies/Enemy.tscn" id="1_ms7iw"]
+[ext_resource type="Script" path="res://Scripts/objects/enemies/DDOS.gd" id="2_etk66"]
+[ext_resource type="Texture2D" uid="uid://cle6v8e38igc0" path="res://Assets/Enemies/Wojak-nb.png" id="3_xwy16"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_v3fru"]
+radius = 23.0
+height = 62.0
+
+[node name="Enemy2" instance=ExtResource("1_ms7iw")]
+script = ExtResource("2_etk66")
+shouldFaceMoveDirection = false
+enemy_type = "DDOS"
+
+[node name="Sprite2D" parent="." index="0"]
+scale = Vector2(0.229167, 0.229167)
+texture = ExtResource("3_xwy16")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(-1, -2)
+shape = SubResource("CapsuleShape2D_v3fru")
+
+[node name="HealthBar" parent="." index="2"]
+offset_left = -25.0
+offset_top = -30.0
+offset_right = 25.0
+offset_bottom = -24.0

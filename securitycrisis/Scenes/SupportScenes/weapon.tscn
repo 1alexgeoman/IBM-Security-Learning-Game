@@ -1,0 +1,26 @@
+[gd_scene load_steps=4 format=3 uid="uid://c5xqvw3hasxm3"]
+
+[ext_resource type="Script" path="res://Scripts/Defences/weapon.gd" id="1_yj4gf"]
+[ext_resource type="Texture2D" uid="uid://725xv6ggb67b" path="res://Assets/Weapons/cyber-sword.png" id="2_hw176"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5xanm"]
+size = Vector2(4.23597, 21.3492)
+
+[node name="Weapon" type="Area2D" groups=["Weapons"]]
+texture_filter = 1
+position = Vector2(-2, 1)
+rotation = -1.30027
+collision_layer = 16
+script = ExtResource("1_yj4gf")
+HIT_INTERVAL_MAX = null
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(-9.10183, 4.59965)
+rotation = 1.70924
+scale = Vector2(0.1, 0.1)
+texture = ExtResource("2_hw176")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(14.2847, 17.8311)
+rotation = -0.638109
+shape = SubResource("RectangleShape2D_5xanm")

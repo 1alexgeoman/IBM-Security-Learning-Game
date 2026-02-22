@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://di1lw40hnlsl4"]
+
+[ext_resource type="Script" path="res://Scripts/Defences/Defense2.gd" id="1_1fyvu"]
+[ext_resource type="PackedScene" uid="uid://i1nlrqi2vpao" path="res://Scenes/objects/Projectiles/missile.tscn" id="2_cv6rp"]
+[ext_resource type="Texture2D" uid="uid://di7pyeyh00beu" path="res://Assets/Defenses/towerDefense_tile180.png" id="3_skka3"]
+[ext_resource type="Texture2D" uid="uid://cwrq1qwc48f4t" path="res://Assets/Defenses/towerDefense_tile205.png" id="4_6lgjo"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_no4j0"]
+radius = 42.0
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rwbfl"]
+bg_color = Color(0.485703, 0.485704, 0.485703, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_dkclq"]
+bg_color = Color(3.85046e-07, 0.742992, 0.996931, 1)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_8n5kk"]
+size = Vector2(50, 49)
+
+[node name="AI SPAM-FILTER" type="Area2D" groups=["Defences"]]
+collision_layer = 2
+script = ExtResource("1_1fyvu")
+projectile_scene = ExtResource("2_cv6rp")
+turret_type = "PHISHING"
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_no4j0")
+
+[node name="Base" type="Sprite2D" parent="."]
+texture = ExtResource("3_skka3")
+
+[node name="Turret" type="Sprite2D" parent="."]
+position = Vector2(0, -1)
+texture = ExtResource("4_6lgjo")
+offset = Vector2(2, 1)
+
+[node name="Muzzle1" type="Marker2D" parent="Turret"]
+position = Vector2(32, 11)
+rotation = -0.00879469
+
+[node name="Muzzle0" type="Marker2D" parent="Turret"]
+position = Vector2(31, -6)
+
+[node name="healthBar" type="ProgressBar" parent="."]
+offset_left = -40.5
+offset_top = -51.0
+offset_right = 41.5
+offset_bottom = -46.0
+theme_override_styles/background = SubResource("StyleBoxFlat_rwbfl")
+theme_override_styles/fill = SubResource("StyleBoxFlat_dkclq")
+value = 100.0
+rounded = true
+show_percentage = false
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, -0.5)
+shape = SubResource("RectangleShape2D_8n5kk")
+
+[connection signal="area_entered" from="." to="." method="_on_area_entered"]

@@ -1,0 +1,8 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+**/[Ll]ibrary/
+/[Ss]ecurity[Cc]risis/[Ll]ibrary/
+/[Ss]ecurity[Cc]risis/[Tt]emp/
+/[Ss]ecurity[Cc]risis/[Oo]bj/
+/[Ss]ecurity[Cc]risis/[Bb]uild/

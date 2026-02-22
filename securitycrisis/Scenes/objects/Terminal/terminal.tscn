@@ -1,0 +1,29 @@
+[gd_scene load_steps=5 format=3 uid="uid://bmwevcoluuop0"]
+
+[ext_resource type="Texture2D" uid="uid://c3hpb53x35mct" path="res://Assets/UI/Terminal/button_square_depth_line.png" id="1_evjee"]
+[ext_resource type="Script" path="res://Scripts/objects/terminal.gd" id="1_q7aqk"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_q0wmw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_wqta1"]
+size = Vector2(57.6335, 20)
+
+[node name="Terminal" type="Area2D"]
+texture_filter = 1
+script = ExtResource("1_q7aqk")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_evjee")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2(4.91861, 4.66657)
+shape = SubResource("CircleShape2D_q0wmw")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+scale = Vector2(1.06966, 3.01837)
+shape = SubResource("RectangleShape2D_wqta1")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]
+[connection signal="body_exited" from="." to="." method="_on_body_exited"]

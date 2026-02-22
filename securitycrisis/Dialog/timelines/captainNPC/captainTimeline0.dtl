@@ -1,0 +1,24 @@
+[history action="clear"]
+if {first_time} == true:
+	Captain: Great work out there. You neutralised the threat and brought the system back under control.
+	Captain: After every major incident, we put together an [color=red]Action Report[/color] to document what happened. I’ll need your help with that.
+	Captain: I’ll be asking you a few questions about the situation.
+	Captain: For the first four questions, you’ll earn [color=red]Knowledge Points[/color] for each correct answer.
+	Captain: The final question will be more reflective—it’s your chance to share what you learned from the experience.
+Captain: Alright, let's get started
+do GameManager.load_all_questions()
+[wait time="0.5"]
+label questions
+do GameManager.next_question()
+[wait time="0.5"]
+if {question} == "default":
+	jump end
+if {last_question} == true:
+	Captain: Last question.
+Captain: {question}
+[text_input text="Please enter your response:" var="response"]
+do GameManager.save_responses()
+jump questions
+label end
+Captain: Good Job
+[wait time="0.1"]

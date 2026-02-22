@@ -1,0 +1,52 @@
+[history action="clear"]
+Neutron: Well done! You successfully mitigated the DDoS attack. Your quick response kept the system stable, and the nuclear plant remains secure... for now.
+
+Captain: We’ve been analysing the attack patterns, but we couldn’t pinpoint a single source. An attack of that scale requires serious resources. It’s likely the work of an organized group.
+
+Neutron: We’re tracing digital footprints, but the attackers are using proxies to hide their trail. We need more time to uncover who's behind this.
+
+[signal arg="alert"]
+ALERT! SYSTEM BREACHED!!
+
+Captain: We might not have that time! Our systems just flagged unusual behaviour.
+
+Captain: Files are appearing and disappearing across critical networks, and the issue’s spreading toward secure databases. This is escalating fast.
+
+Player: Sounds like the system might have a...
+
+- Virus
+	set {response} = "virus"
+
+- DDoS
+
+- SQL Injection
+
+if {response} == "virus":
+	Captain:   Exactly. A [color=red]virus[/color] attaches itself to legitimate files, spreads when executed, and can corrupt or destroy data.
+
+else:
+	Captain:   Actually, this fits the behaviour of a [color=red]virus[/color]. It spreads by attaching to files and executing silently, damaging or corrupting systems along the way.
+
+Captain: Viruses differ from [color=red]worms[/color]. Worms spread independently across networks, while [color=red]viruses rely on users executing infected files[/color].
+
+Neutron: And if attackers planted a [color=red]rootkit[/color], it could let them stay hidden even after security scans. Rootkits are designed for stealth, masking malware activity deep inside the system.
+
+Captain: Good [color=red]anti-virus[/color] software is your first line of defense. It detects with the help of [color=red]virus signatures[/color], then isolates, and eliminates threats before they spread.
+
+Player: I’ll ask Nina to install a...
+
+- Anti-virus
+	set {response} = "antivirus"
+
+- Firewall
+
+- Spam filter
+
+if {response} == "antivirus":
+	Captain: Excellent choice. [color=red]Anti-virus[/color] software scans files, memory, and running processes to catch malware early and stop it from spreading.
+
+else:
+	Captain: In this case, the best move is [color=red]anti-virus[/color] software. Firewalls filter traffic, but viruses hide inside legitimate files — only anti-virus can detect them properly.
+
+Captain: Let’s act fast before the infection spreads any deeper.
+[end_timeline]

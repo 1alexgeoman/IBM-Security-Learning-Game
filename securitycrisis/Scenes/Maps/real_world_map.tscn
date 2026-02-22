@@ -1,0 +1,58 @@
+[gd_scene load_steps=11 format=3 uid="uid://hrjb4ujlt4b4"]
+
+[ext_resource type="PackedScene" uid="uid://dox6qcg8myfiu" path="res://Scenes/Maps/world_map.tscn" id="1_22wnr"]
+[ext_resource type="Script" path="res://Scripts/maps/real_world_map.gd" id="1_c4323"]
+[ext_resource type="PackedScene" uid="uid://hmlpeppduljn" path="res://Scenes/Characters/player.tscn" id="5_2162q"]
+[ext_resource type="PackedScene" uid="uid://kdhxos78cxbm" path="res://Scenes/UIScenes/Hint.tscn" id="6_7fabu"]
+[ext_resource type="PackedScene" uid="uid://bmwevcoluuop0" path="res://Scenes/Objects/Terminal/terminal.tscn" id="7_nrr2b"]
+[ext_resource type="PackedScene" uid="uid://egcje2uqy53n" path="res://Scenes/UIScenes/shop_ui.tscn" id="9_soflt"]
+[ext_resource type="PackedScene" uid="uid://dd0wbjhfcj0c8" path="res://Scenes/SupportScenes/scene_transition_animation.tscn" id="10_x48w7"]
+[ext_resource type="PackedScene" uid="uid://0gg8qmkdake7" path="res://Scenes/Characters/neutron_npc.tscn" id="11_gh4sr"]
+[ext_resource type="PackedScene" uid="uid://b0nxjstwlkckr" path="res://Scenes/Characters/nina_npc.tscn" id="11_qwwoe"]
+[ext_resource type="PackedScene" uid="uid://8wx60qi3q0l" path="res://Scenes/Characters/captain_npc.tscn" id="11_v1562"]
+
+[node name="RealWorldMap" type="Node2D"]
+position = Vector2(-2, -37)
+script = ExtResource("1_c4323")
+
+[node name="WorldMap" parent="." instance=ExtResource("1_22wnr")]
+scale = Vector2(1, 1)
+
+[node name="MainComponents" type="Node2D" parent="."]
+
+[node name="MainCamera" type="Camera2D" parent="MainComponents"]
+position = Vector2(1171, 818)
+zoom = Vector2(2.3, 2.3)
+
+[node name="Terminal" parent="MainComponents" node_paths=PackedStringArray("SceneTransitionNode") instance=ExtResource("7_nrr2b")]
+position = Vector2(1218, 1077)
+SceneTransitionNode = NodePath("../Ui/SceneTransitionAnimation")
+
+[node name="Ui" type="CanvasLayer" parent="MainComponents"]
+
+[node name="SceneTransitionAnimation" parent="MainComponents/Ui" instance=ExtResource("10_x48w7")]
+position = Vector2(309, 321)
+
+[node name="ShopUI" parent="MainComponents/Ui" instance=ExtResource("9_soflt")]
+unique_name_in_owner = true
+visible = false
+
+[node name="Hint" parent="MainComponents/Ui" instance=ExtResource("6_7fabu")]
+visible = false
+
+[node name="Player" parent="MainComponents" instance=ExtResource("5_2162q")]
+position = Vector2(1006, 523)
+platform_floor_layers = 4294967040
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="MainComponents/Player"]
+position = Vector2(165, 295)
+remote_path = NodePath("../../MainCamera")
+
+[node name="NeutronNPC" parent="MainComponents" instance=ExtResource("11_gh4sr")]
+position = Vector2(1252, 810)
+
+[node name="NinaNPC" parent="MainComponents" instance=ExtResource("11_qwwoe")]
+position = Vector2(572, 950)
+
+[node name="CaptainNPC" parent="MainComponents" instance=ExtResource("11_v1562")]
+position = Vector2(1922, 951)

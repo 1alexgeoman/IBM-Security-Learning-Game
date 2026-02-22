@@ -1,0 +1,111 @@
+[gd_scene load_steps=9 format=3 uid="uid://cd7wceoaptjrj"]
+
+[ext_resource type="Script" path="res://Scripts/Characters/npc.gd" id="1_xymux"]
+[ext_resource type="Texture2D" uid="uid://ds77mf4ba5wmu" path="res://Assets/Player/character_asset.png" id="2_2ehdj"]
+[ext_resource type="Texture2D" uid="uid://d2f8isv5qlpqv" path="res://Assets/Player/Icon.png" id="2_5x6c2"]
+
+[sub_resource type="Animation" id="Animation_orgx4"]
+resource_name = "Default"
+loop_mode = 1
+step = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IcoSp:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.2, 0.5, 0.5001, 1),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 0,
+"values": [Vector2(2.25, 1.84524), Vector2(2.5, 2.05), Vector2(2.5, 2.05), Vector2(2.25, 1.845), Vector2(2.25, 1.845)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IcoSp:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.5, 0.75),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 1,
+"values": [Vector2(0, 0), Vector2(0, 0), Vector2(0, -3)]
+}
+
+[sub_resource type="Animation" id="Animation_wnqpj"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("IcoSp:scale")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(2.25, 1.84524)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("IcoSp:offset")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector2(0, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ok4a8"]
+_data = {
+"Default": SubResource("Animation_orgx4"),
+"RESET": SubResource("Animation_wnqpj")
+}
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_37i0c"]
+size = Vector2(38, 61)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_p45sa"]
+radius = 88.0227
+
+[node name="Npc" type="StaticBody2D"]
+script = ExtResource("1_xymux")
+
+[node name="Sprite" type="Sprite2D" parent="."]
+position = Vector2(0, -17)
+scale = Vector2(1.2, 1.3)
+texture = ExtResource("2_2ehdj")
+hframes = 4
+frame = 3
+
+[node name="IcoSp" type="Sprite2D" parent="."]
+position = Vector2(6.00003, -45)
+scale = Vector2(2.25, 1.84524)
+texture = ExtResource("2_5x6c2")
+hframes = 8
+vframes = 4
+frame = 31
+
+[node name="IcoAnimP" type="AnimationPlayer" parent="."]
+libraries = {
+"": SubResource("AnimationLibrary_ok4a8")
+}
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(8, -47)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(-0.5, -1)
+shape = SubResource("RectangleShape2D_37i0c")
+
+[node name="Range" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Range"]
+shape = SubResource("CircleShape2D_p45sa")
+
+[connection signal="body_entered" from="Range" to="." method="_on_show_dialog_ico_body_entered"]
+[connection signal="body_exited" from="Range" to="." method="_on_show_dialog_ico_body_exited"]

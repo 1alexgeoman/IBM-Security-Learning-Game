@@ -1,0 +1,38 @@
+### VS Code ###
+.vscode/
+
+### Mac OS ###
+.DS_Store
+
+.idea/
+
+### Godot ###
+.import/
+*.import
+.editor_settings.json 
+
+
+.history/
+
+### Build files ###
+*.exe                    # Windows executable
+*.apk                    # Android APK
+*.pck                    # Godot exported resource pack
+*.zip                    # Exported ZIP file
+*.tar.gz                 # Compressed builds
+*.x86_64                 # Linux builds
+*.dmg                    # macOS builds
+
+# Unity-specific ignores
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Bb]uild/
+**/[Ll]ogs/
+**/[Uu]ser[Ss]ettings/
+**/Library/
+
+/[Ss]ecurity[Cc]risis/[Ll]ibrary/
+/[Ss]ecurity[Cc]risis/[Tt]emp/
+/[Ss]ecurity[Cc]risis/[Oo]bj/
+/[Ss]ecurity[Cc]risis/[Bb]uild/

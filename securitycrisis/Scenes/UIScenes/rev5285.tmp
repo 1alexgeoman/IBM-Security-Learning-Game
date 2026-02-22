@@ -1,0 +1,312 @@
+[gd_scene load_steps=7 format=3 uid="uid://bvc4xfovlt2nf"]
+
+[ext_resource type="Script" path="res://Scripts/UI/reviewed_report.gd" id="1_i7p87"]
+[ext_resource type="Texture2D" uid="uid://dgdkri3w66x4m" path="res://Assets/UI/Report/paper-texture2.jpg" id="1_trkik"]
+[ext_resource type="FontFile" uid="uid://ba1d3p1a8dgyd" path="res://addons/dialogic/Example Assets/Fonts/Roboto-Bold.ttf" id="2_ljscr"]
+[ext_resource type="LabelSettings" uid="uid://8oatwmkmanwe" path="res://Resources/label_settings/new_label_settings.tres" id="3_heedp"]
+[ext_resource type="Texture2D" uid="uid://cel8856ingvn6" path="res://Assets/UI/Buttons/button_rectangle_depth_flat.png" id="4_fjxuf"]
+[ext_resource type="Script" path="res://Scenes/UIScenes/enemy_type.gd" id="5_g8otd"]
+
+[node name="Reviewed" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_i7p87")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+layout_mode = 0
+offset_right = 1925.0
+offset_bottom = 1083.0
+color = Color(0.1189, 0.220785, 0.41, 1)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 0
+offset_left = 365.0
+offset_top = 6.0
+offset_right = 1499.0
+offset_bottom = 1092.0
+texture = ExtResource("1_trkik")
+expand_mode = 1
+
+[node name="ScrollContainer" type="ScrollContainer" parent="TextureRect"]
+layout_mode = 0
+offset_left = -1.0
+offset_top = -1.0
+offset_right = 1137.0
+offset_bottom = 1070.0
+
+[node name="MarginContainer" type="MarginContainer" parent="TextureRect/ScrollContainer"]
+custom_minimum_size = Vector2(0, 1200)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_stretch_ratio = 1.65
+
+[node name="Title" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+size_flags_vertical = 8
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 30
+text = "Action Report: Cyber Threat Mitgation"
+vertical_alignment = 2
+
+[node name="Review" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer2"]
+custom_minimum_size = Vector2(440, 100)
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0.355, 0.71, 1)
+theme_override_fonts/font = ExtResource("2_ljscr")
+theme_override_font_sizes/font_size = 40
+text = "REVIEWED"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="Description" type="VBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 1.66
+theme_override_constants/separation = 5
+
+[node name="EnemyType" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/Description"]
+layout_mode = 2
+text = "Incident Type: Distributed Denial of Service"
+label_settings = ExtResource("3_heedp")
+script = ExtResource("5_g8otd")
+
+[node name="Date" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/Description"]
+layout_mode = 2
+text = "Date/Time: 13th May 202X"
+label_settings = ExtResource("3_heedp")
+
+[node name="Location" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/Description"]
+layout_mode = 2
+text = "Location: National Nuclear Research Facility — Main Network"
+label_settings = ExtResource("3_heedp")
+
+[node name="HSeparator" type="HSeparator" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="Summary" type="VBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 3.85
+
+[node name="Title" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/Summary"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "Threat Summary:"
+label_settings = ExtResource("3_heedp")
+vertical_alignment = 2
+
+[node name="ThreatSummary" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/Summary"]
+custom_minimum_size = Vector2(100, 80)
+layout_mode = 2
+text = "A high-volume Distributed Denial of Service (DDoS) attack was detected targeting our main system servers. The attack flooded the network with excessive traffic from thousands of IP addresses, overwhelming system resources and slowing down critical operations."
+label_settings = ExtResource("3_heedp")
+autowrap_mode = 2
+
+[node name="HSeparator2" type="HSeparator" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+theme_override_constants/separation = 20
+
+[node name="ActionTaken" type="VBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 8.38
+theme_override_constants/separation = 3
+
+[node name="Title" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken"]
+layout_mode = 2
+text = "Action Taken:"
+label_settings = ExtResource("3_heedp")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken/HBoxContainer"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "1. Threat Detection:
+Security systems triggered an immediate alert upon detecting "
+label_settings = ExtResource("3_heedp")
+
+[node name="Label2" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken/HBoxContainer"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.07, 0.7, 0.154, 1)
+theme_override_font_sizes/font_size = 21
+text = " unusual traffic spikes.
+"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "2. Firewall Deployment:
+Firewall rules were updated to "
+label_settings = ExtResource("3_heedp")
+
+[node name="Label2" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken/HBoxContainer2"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0705882, 0.701961, 0.152941, 1)
+theme_override_font_sizes/font_size = 20
+text = "filter and block untrusted IP addresses.
+"
+vertical_alignment = 2
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "3. Traffic Analysis:
+Suspicious IP addresses were identified and "
+label_settings = ExtResource("3_heedp")
+
+[node name="Label2" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken/HBoxContainer3"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.79, 0.079, 0.079, 1)
+theme_override_font_sizes/font_size = 21
+text = "blacklisted.
+"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="HBoxContainer4" type="HBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken/HBoxContainer4"]
+custom_minimum_size = Vector2(0, 40)
+layout_mode = 2
+text = "4. System Optimisation:
+Non-essential services were temporarily paused to"
+label_settings = ExtResource("3_heedp")
+
+[node name="Label2" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/ActionTaken/HBoxContainer4"]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.0705882, 0.701961, 0.152941, 1)
+theme_override_font_sizes/font_size = 21
+text = "allocate resources to critical infrastructure.
+"
+horizontal_alignment = 2
+vertical_alignment = 2
+
+[node name="HSeparator3" type="HSeparator" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="FollowUp" type="VBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 2.88
+theme_override_constants/separation = 10
+
+[node name="Label" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/FollowUp"]
+layout_mode = 2
+text = "Follow-up Actions:
+Review and strengthen firewall rules for faster response in future incidents."
+label_settings = ExtResource("3_heedp")
+
+[node name="HSeparator4" type="HSeparator" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Review:
+Action Taken: Got 3/4 correct.
+
+Follow-up Action: Scored a 10. Here is a suggested answer:
+Review and strengthen firewall rules for faster response in future incidents."
+label_settings = ExtResource("3_heedp")
+
+[node name="Label2" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+text = "Appleas are red."
+label_settings = ExtResource("3_heedp")
+
+[node name="HSeparator5" type="HSeparator" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Label" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/VBoxContainer2"]
+layout_mode = 2
+text = "Total KP Earned: 1200"
+label_settings = ExtResource("3_heedp")
+
+[node name="HSeparator6" type="HSeparator" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
+
+[node name="Signed" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 10
+size_flags_stretch_ratio = 1.5
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 20
+text = "Report By:
+Chief Digital Security Officer
+National Nuclear Research Facility"
+label_settings = ExtResource("3_heedp")
+
+[node name="TextureButton" type="TextureButton" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 2
+size_flags_stretch_ratio = 0.5
+action_mode = 0
+texture_normal = ExtResource("4_fjxuf")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="TextureRect/ScrollContainer/MarginContainer/VBoxContainer/HBoxContainer/TextureButton"]
+layout_mode = 1
+anchors_preset = 14
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_top = -11.1667
+offset_bottom = 11.1667
+grow_horizontal = 2
+grow_vertical = 2
+text = "DONE"
+label_settings = ExtResource("3_heedp")
+horizontal_alignment = 1
+vertical_alignment = 1

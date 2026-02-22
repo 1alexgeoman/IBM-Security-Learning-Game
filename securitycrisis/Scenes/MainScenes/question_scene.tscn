@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c6djvv62g4y2l"]
+
+[ext_resource type="PackedScene" uid="uid://dox6qcg8myfiu" path="res://Scenes/Maps/world_map.tscn" id="1_8jkgj"]
+[ext_resource type="Script" path="res://Scripts/main/question_scene.gd" id="1_kbo2c"]
+[ext_resource type="PackedScene" uid="uid://8wx60qi3q0l" path="res://Scenes/Characters/captain_npc.tscn" id="3_bvmdn"]
+[ext_resource type="PackedScene" uid="uid://hmlpeppduljn" path="res://Scenes/Characters/player.tscn" id="3_smfj0"]
+[ext_resource type="PackedScene" uid="uid://dd0wbjhfcj0c8" path="res://Scenes/SupportScenes/scene_transition_animation.tscn" id="6_jt7iy"]
+
+[node name="QuestionScene" type="Node2D"]
+position = Vector2(0, 1)
+script = ExtResource("1_kbo2c")
+
+[node name="WorldMap" parent="." instance=ExtResource("1_8jkgj")]
+scale = Vector2(1, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(1022.85, 790.923)
+zoom = Vector2(2.3, 2.3)
+
+[node name="CaptainNPC" parent="." instance=ExtResource("3_bvmdn")]
+position = Vector2(1351, 822)
+
+[node name="Player" parent="." instance=ExtResource("3_smfj0")]
+position = Vector2(949, 514)
+
+[node name="RemoteTransform2D" type="RemoteTransform2D" parent="Player"]
+position = Vector2(73.8462, 276.923)
+remote_path = NodePath("../../Camera2D")
+
+[node name="SceneTransitionAnimation" parent="." instance=ExtResource("6_jt7iy")]

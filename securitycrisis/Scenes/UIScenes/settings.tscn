@@ -1,0 +1,60 @@
+[gd_scene load_steps=6 format=3 uid="uid://nxlbm7lxcvmc"]
+
+[ext_resource type="Script" path="res://Scripts/UI/settings.gd" id="1_6h5q4"]
+[ext_resource type="Texture2D" uid="uid://b667r8ddc1ous" path="res://Assets/UI/Art/BackGround.png" id="1_yldfm"]
+[ext_resource type="FontFile" uid="uid://bevs4mlbet5wb" path="res://Resources/Fonts/alagard.ttf" id="2_cua7b"]
+[ext_resource type="Texture2D" uid="uid://cp6d5i5vhby4f" path="res://Assets/UI/Buttons/button_rectangle_depth_gloss.png" id="3_qn7p5"]
+[ext_resource type="Texture2D" uid="uid://cel8856ingvn6" path="res://Assets/UI/Buttons/button_rectangle_depth_flat.png" id="4_fde80"]
+
+[node name="settings" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_6h5q4")
+
+[node name="BackGround" type="TextureRect" parent="."]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+texture = ExtResource("1_yldfm")
+
+[node name="Label" type="Label" parent="BackGround"]
+layout_mode = 0
+offset_left = 773.0
+offset_top = 20.0
+offset_right = 1148.0
+offset_bottom = 114.0
+theme_override_fonts/font = ExtResource("2_cua7b")
+theme_override_font_sizes/font_size = 100
+text = "Settings"
+
+[node name="back" type="TextureButton" parent="BackGround"]
+layout_mode = 0
+offset_left = 754.0
+offset_top = 890.0
+offset_right = 1154.0
+offset_bottom = 990.0
+texture_normal = ExtResource("3_qn7p5")
+texture_pressed = ExtResource("4_fde80")
+stretch_mode = 0
+
+[node name="Label" type="Label" parent="BackGround/back"]
+modulate = Color(0.101868, 0.101868, 0.101868, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -4.0
+offset_right = -4.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Back
+
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[connection signal="pressed" from="BackGround/back" to="." method="_on_back_pressed"]
