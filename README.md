@@ -1,6 +1,6 @@
 # 🔐 SecurityCrisis
 
-**SecurityCrisis** is an educational tower defence-style game designed to raise cybersecurity awareness through immersive gameplay. Players learn about real-world cyber threats, apply defensive strategies, and get tested on their knowledge all while progressing through levels focused on specific cybersecurity topics. Play game [here](https://www.ibmslg.com) 
+**SecurityCrisis** is an educational tower defence-style game designed to raise cybersecurity awareness through immersive gameplay. Players learn about real-world cyber threats, apply defensive strategies, and get tested on their knowledge all while progressing through levels focused on specific cybersecurity topics. Play game [here](https://ibmslg.com/) 
 
 ## 🎮 About the Game
 
